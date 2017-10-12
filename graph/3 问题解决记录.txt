@@ -1,0 +1,16 @@
+1、问题关键字： （1）、valgrind、graph_view、uninitialised、未初始化、error
+	问题详细描述：
+		vlalgrind 运行目标文件，报错如下：
+			==1675== Use of uninitialised value of size 4
+			==1675==    at 0x4073B86: _itoa_word (in /lib/libc-2.12.so)
+			==1675==    by 0x407778E: vfprintf (in /lib/libc-2.12.so)
+			==1675==    by 0x407F1FF: printf (in /lib/libc-2.12.so)
+			==1675==    by 0x8048A44: graph_vertex_print (in /home/zhou/Struct/Graph/Test)
+			==1675==    by 0x8048AF1: graph_view (in /home/zhou/Struct/Graph/Test)
+			==1675==    by 0x8049D60: main (in /home/zhou/Struct/Graph/Test)
+	问题定位描述：
+		1、Use of uninitialised value of size 4为使用了未初始化的值。
+		2、使用未初始的值有隐患，对于本程序来讲，并非致命问题，根据变成规范来讲，确实致命的。
+	修改描述：
+		在初始化流程graph_init()->vertex_init()->edge_list_init()中，逐一排查，对所有没有经过初始化的变量进行初始化。
+	修改时间：2017-5-30
