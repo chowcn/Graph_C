@@ -1,2 +1,3 @@
 # Graph_C
-A test program
+图测试代码，实现较早，可正常编译和运行，但通用性不强；
+本次上传主要测试github的使用，如果需要讨论图算法的问题：chow_cn@163.com
